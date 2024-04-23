@@ -27,6 +27,6 @@ namespace MonoGame.Extended
 
         public abstract BoundingFrustum GetBoundingFrustum();
         public abstract ContainmentType Contains(Vector2 vector2);
-        public abstract ContainmentType Contains(Rectangle rectangle); 
+        public abstract ContainmentType Contains(Rectangle rectangle);
     }
 }
