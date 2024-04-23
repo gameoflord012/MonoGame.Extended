@@ -16,9 +16,10 @@ namespace MonoGame.Extended.Content.Pipeline.BitmapFonts
 
                 foreach (var fontPage in bitmapFontFile.Pages)
                 {
-                    var assetName = Path.GetFileNameWithoutExtension(fontPage.File);
-                    context.Logger.LogMessage("Expected texture asset: {0}", assetName);
-                    result.TextureAssets.Add(assetName);
+                    var assetFileName = fontPage.File;
+                    context.Logger.LogMessage("Expected texture asset: {0}", assetFileName);
+                    var sourceDir = Path.GetDirectoryName(context.SourceIdentity.SourceFilename);
+                    result.TextureAssets.Add(Path.Combine(sourceDir, assetFileName));
                 }
 
                 return result;

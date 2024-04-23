@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.TextureAtlases;
+using MonoGame.Framework.Content.Pipeline.Builder;
 
 namespace MonoGame.Extended.BitmapFonts
 {
@@ -20,8 +22,12 @@ namespace MonoGame.Extended.BitmapFonts
                 assets.Add(assetName);
             }
 
+            var mgcontent = Path.ChangeExtension(reader.AssetName, PipelineBuildEvent.Extension);
+            var buildEvent = PipelineBuildEvent.Load(mgcontent);
+            var sourceDir = Path.GetDirectoryName(buildEvent.SourceFile);
+
             var textures = assets
-                .Select(textureName => reader.ContentManager.Load<Texture2D>(reader.GetRelativeAssetName(textureName)))
+                .Select(textureName => reader.ContentManager.Load<Texture2D>(Path.Combine(sourceDir, textureName)))
                 .ToArray();
 
             var lineHeight = reader.ReadInt32();
