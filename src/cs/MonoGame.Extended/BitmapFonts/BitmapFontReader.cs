@@ -22,7 +22,7 @@ namespace MonoGame.Extended.BitmapFonts
                 assets.Add(assetName);
             }
 
-            var mgcontent = Path.ChangeExtension(reader.AssetName, PipelineBuildEvent.Extension);
+            var mgcontent = reader.AssetName + PipelineBuildEvent.Extension;
             var buildEvent = PipelineBuildEvent.Load(mgcontent);
             var sourceDir = Path.GetDirectoryName(buildEvent.SourceFile);
 
