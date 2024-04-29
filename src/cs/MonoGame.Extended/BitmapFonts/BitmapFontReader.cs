@@ -22,12 +22,8 @@ namespace MonoGame.Extended.BitmapFonts
                 assets.Add(assetName);
             }
 
-            var mgcontent = reader.AssetName + PipelineBuildEvent.Extension;
-            var buildEvent = PipelineBuildEvent.Load(mgcontent);
-            var sourceDir = Path.GetDirectoryName(buildEvent.SourceFile);
-
             var textures = assets
-                .Select(textureName => reader.ContentManager.Load<Texture2D>(Path.Combine(sourceDir, textureName)))
+                .Select(textureName => reader.ContentManager.Load<Texture2D>(textureName))
                 .ToArray();
 
             var lineHeight = reader.ReadInt32();
